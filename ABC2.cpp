@@ -1,4 +1,7 @@
-#include <iostream>;
+#include <iostream>
+#include "DEF.cpp"
+#include <chrono>
+#include <thread>
 
 using namespace std;
 
@@ -38,13 +41,14 @@ class Player
         AnsweredAll = true;
 
     }
-
-
 };   
 
 
 int main(Player)
 {            
+    using namespace std::chrono; //to use sleep_
+    using namespace std::this_thread; //to use sleep_
+    
     Player player;
     string DetailsCorrect;
     intro();
@@ -69,11 +73,27 @@ int main(Player)
 
         if(DetailsCorrect == "Yes")
         {
-            //do nothing
+            cout << "Thank you for providing your details. We know everything about you now.\n";
+            cout << endl;
+            cout << "Processing";
+            sleep_for(1s);
+            cout << ".";
+            sleep_for(1s);
+            cout << ".";
+            sleep_for(1s);
+            cout << ".";
+            sleep_for(2s);
+            cout << endl;
+            cout << "\nYou may move onto our processing plant and begin your retraining.\n";
+            cout << endl;
+            
+            HiThere();
+            sleep_for(2s);
+            OpenFile();
         }
         else
         {
-            
+            /*code*/
         }
         
     }
