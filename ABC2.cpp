@@ -1,9 +1,10 @@
 #include <iostream>
-#include "DEF.cpp"
+#include "DEF.h"
 #include <chrono>
 #include <thread>
 
 using namespace std;
+using namespace header;
 
 void intro()
 {
@@ -12,16 +13,8 @@ void intro()
     cout << "Please answer all the following questions: \n";
 }
 
-class Player
-{
-    public:
-    const static int MAX_INPUT_LENGTH = 100;
-    bool AnsweredAll;       
-    char Name[MAX_INPUT_LENGTH], Profession[MAX_INPUT_LENGTH], Age[MAX_INPUT_LENGTH], Married[MAX_INPUT_LENGTH];
-    string Questions[4] = {"What is your name?", "How old are you?", "What is your profession?", "Are you married? Y/N"};
-
-    void AnsweringQuestions()
-    {        
+void Player::AnsweringQuestions()
+{        
         AnsweredAll = false;
     
         cout << endl;
@@ -40,8 +33,7 @@ class Player
 
         AnsweredAll = true;
 
-    }
-};   
+}
 
 
 int main(Player)
