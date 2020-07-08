@@ -43,9 +43,13 @@ void Player::HiThere()
 {
     ofstream PlayerFile("playerfile.txt");
 
-    //PlayerFile << "\nPersonal Details: \n" << player.Name << endl << player.Age << endl << player.Profession << endl << player.Married << endl;
-        
-    std::cout << "Please look at the following file on your screen.";      
+    PlayerFile << "\nHello there, " << Name << "!" << endl;
+    PlayerFile << "\nHere is a little puzzle for you: \n";
+    PlayerFile << "You are looking for an access code.";
+    PlayerFile << "\n * The number has four digits. \n * All the digits are different. \n * It begins and ends with an odd number and has two even numbers in the middle. \n * 19 and 519 go into it exactly. \n"; 
+    PlayerFile << "\n You may use this file for your notes and calculations. Once you have the number, enter it in the command line and press Enter. I will be waiting.";   
+
+    std::cout << "Please look at the following file on your screen.\n";      
 }
 
 void Player::OpenFile()
@@ -53,7 +57,6 @@ void Player::OpenFile()
     ShellExecuteA(NULL, "open", "playerfile.txt", NULL, NULL, SW_SHOWNORMAL); // use filename if same directory, else give path: C:\\Users\\Kat\\Documents\\hifriend.txt
         
 }
-
 
 int main(Player)
 {            
@@ -65,14 +68,14 @@ int main(Player)
     intro();
     player.AnsweringQuestions();
     string Answers[4] = {"Name: ", "Age: ", "Profession: ", "Married Y/N: "};
+    int CipherSolution = 9861;
+    int CipherGuess;
     
     while (player.AnsweredAll == false)
     {
         cin.clear();
         cin.ignore();
-    }
-
-    
+    }    
 
     if(player.AnsweredAll == true)
     {
@@ -103,6 +106,14 @@ int main(Player)
             player.HiThere();
             sleep_for(2s);
             player.OpenFile();
+
+            cin >> CipherGuess;
+
+            if(CipherGuess == CipherSolution)
+            {
+                cout << "Your brainfunctions are adequate. You may proceed.";
+            }
+            
         }
         else
         {
@@ -110,6 +121,8 @@ int main(Player)
         }
         
     }
+
+    
      
     return 0;
 }

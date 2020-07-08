@@ -1,0 +1,11 @@
+
+Hello there, Katalin Bresztyenszky!
+
+Here is a little puzzle for you: 
+You are looking for an access code.
+ * The number has four digits. 
+ * All the digits are different. 
+ * It begins and ends with an odd number and has two even numbers in the middle. 
+ * 19 and 519 go into it exactly. 
+
+ You may use this file for your notes and calculations. Once you have the number, enter it in the command line and press Enter. I will be waiting.
