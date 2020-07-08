@@ -24,12 +24,7 @@ namespace header
         void HiThere();
         void OpenFile();
 
-    };
-
-    
-    
-
-    
+    };       
 
 }
 
