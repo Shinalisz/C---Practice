@@ -1,9 +1,14 @@
 #include <iostream>
-#include "DEF0.cpp"
+#include "DEF.h"
 #include <chrono>
 #include <thread>
+#include <Windows.h>
+#include <shellapi.h>
+
+#pragma comment(lib, "SHELL32.LIB") //pragma directive - allows us to (research more!)
 
 using namespace std;
+using namespace header;
 
 void intro()
 {
@@ -12,17 +17,8 @@ void intro()
     cout << "Please answer all the following questions: \n";
 }
 
-class Player
-{
-    public:
-    const static int MAX_INPUT_LENGTH = 100;
-    bool AnsweredAll;       
-    char Name[MAX_INPUT_LENGTH], Profession[MAX_INPUT_LENGTH], Age[MAX_INPUT_LENGTH], Married[MAX_INPUT_LENGTH];
-    string Questions[4] = {"What is your name?", "How old are you?", "What is your profession?", "Are you married? Y/N"};
-    
-
-    void AnsweringQuestions()
-    {        
+void Player::AnsweringQuestions()
+{        
         AnsweredAll = false;
     
         cout << endl;
@@ -41,8 +37,22 @@ class Player
 
         AnsweredAll = true;
 
-    }
-};   
+}
+
+void Player::HiThere()
+{
+    ofstream PlayerFile("playerfile.txt");
+
+    //PlayerFile << "\nPersonal Details: \n" << player.Name << endl << player.Age << endl << player.Profession << endl << player.Married << endl;
+        
+    std::cout << "Please look at the following file on your screen.";      
+}
+
+void Player::OpenFile()
+{       
+    ShellExecuteA(NULL, "open", "playerfile.txt", NULL, NULL, SW_SHOWNORMAL); // use filename if same directory, else give path: C:\\Users\\Kat\\Documents\\hifriend.txt
+        
+}
 
 
 int main(Player)
@@ -61,6 +71,8 @@ int main(Player)
         cin.clear();
         cin.ignore();
     }
+
+    
 
     if(player.AnsweredAll == true)
     {
@@ -88,9 +100,9 @@ int main(Player)
             cout << "\nYou may move onto our processing plant and begin your retraining.\n";
             cout << endl;
             
-            HiThere();
+            player.HiThere();
             sleep_for(2s);
-            OpenFile();
+            player.OpenFile();
         }
         else
         {
@@ -101,8 +113,3 @@ int main(Player)
      
     return 0;
 }
-
-
-
-
-
