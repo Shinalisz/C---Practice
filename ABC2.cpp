@@ -21,8 +21,7 @@ void intro()
 }
 
 void Player::AnsweringQuestions()
-{        
-        
+{                
         
         cout << endl;
         cout << Questions[0] << endl;
@@ -36,10 +35,8 @@ void Player::AnsweringQuestions()
 
         cout << Questions[3] << endl;
         cin.getline(Married, MAX_INPUT_LENGTH);
-        cout << endl;
-
+        cout << endl;      
         
-
 }
 
 void Player::HiThere()
@@ -65,6 +62,7 @@ void TxtPuzzle(Player player)
 {
     int CipherSolution = 9861;
     int CipherGuess;
+    string Snark[] = {"\nPlease enter your solution here: ", "\nPlease enter your CORRECT solution here: ", "\nNow you are just guessing.. One more time: ", "\nIf I had any feelings I would say I believe in you. But I do not. Again: "};
 
     cout << "Thank you for providing your details. We know everything about you now.\n";
     cout << endl;
@@ -84,12 +82,29 @@ void TxtPuzzle(Player player)
     sleep_for(2s);
     player.OpenFile();
 
-    cin >> CipherGuess;
+    do
+    {     
+        
 
-    if(CipherGuess == CipherSolution)
-    {
-        cout << "Your brainfunctions are adequate. You may proceed.";
-    }        
+        for(int i = 0; i < 5; i++)
+        {
+            cout << Snark[i];
+            i + 1;
+            cin >> CipherGuess;            
+
+            if (CipherGuess == CipherSolution)
+            {
+                cout << "\nYour brainfunctions are adequate. You may proceed.\n";
+                break;
+            }      
+
+        }  
+        
+
+    } while ((CipherGuess != CipherSolution));
+
+
+    
 }
 
 int main(Player)
@@ -99,9 +114,7 @@ int main(Player)
     
     intro();     
 
-    string Answers[4] = {"Name: ", "Age: ", "Profession: ", "Married Y/N: "};        
-     
-     
+    string Answers[4] = {"Name: ", "Age: ", "Profession: ", "Married Y/N: "};             
      
     char DetailesCorrect[25];    
 
@@ -109,6 +122,7 @@ int main(Player)
     {
         player.AnsweringQuestions();  
 
+        cout << endl;
         cout << endl;
         cout << "Are these details correct? Yes/No\n";
         cout << Answers[0] << player.Name << endl;
@@ -118,12 +132,32 @@ int main(Player)
             
         cin.getline(DetailesCorrect, 25);  
         
+
+        if(DetailesCorrect != std::string("Yes") && DetailesCorrect != std::string("No"))
+        {
+            cout << endl;
+            cout << "You should be able to read by now. Please answer: Yes or No.";
+
+            cout << endl;
+            cout << endl;
+            cout << "Are these details correct? Yes/No\n";
+            cout << Answers[0] << player.Name << endl;
+            cout << Answers[1] << player.Age << endl;
+            cout << Answers[2] << player.Profession << endl;
+            cout << Answers[3] << player.Married << endl;      
+            
+            cin.getline(DetailesCorrect, 25);             
+
+        }
+        
         if (DetailesCorrect == std::string("Yes"))
         {    
             break;
         }
 
     } while (DetailesCorrect == std::string("No"));
+
+    
     
     TxtPuzzle(player);
         
