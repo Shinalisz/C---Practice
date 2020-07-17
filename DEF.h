@@ -8,7 +8,6 @@
 
 #pragma once // this is a header guard. Stops this file from being copied into cpp files more than once
 
-
 using namespace std;
 namespace header
 {
